@@ -1,6 +1,7 @@
 import './../node_modules/bootstrap/dist/css/bootstrap.css';
 import './../node_modules/sweetalert/dist/sweetalert.css';
 import './css/css/main.css';
+import './../node_modules/react-credit-cards/es/styles-compiled.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,7 +14,6 @@ import promise from 'redux-promise';
 import reducers from './reducers';
 
 import Home from './components/home';
-import About from './components/about';
 import Contact from './components/contact';
 
 
@@ -28,7 +28,6 @@ ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
     <Switch>
-      <Route path="/about" component={About}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/" component={Home}/>
     </Switch>

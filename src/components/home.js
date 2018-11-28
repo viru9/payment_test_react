@@ -1,23 +1,20 @@
 import React, {Component} from 'react';
 import MainNav from './main_nav';
 import {connect} from 'react-redux';
-import AlertModel from './common/alert';
 import { Button } from 'reactstrap';
+import Cards from 'react-credit-cards';
 
 class Home extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      show_alert: false
+      number:'',
+      name:'',
+      expiry:'',
+      cvc:'',
+      focused:false
     }
-  }
-
-  buttonClicked() {
-    this.setState({show_alert: true});
-    setTimeout(() => {
-      this.setState({show_alert: false})
-    }, 1000);
   }
 
 
@@ -25,8 +22,16 @@ class Home extends Component {
     return (
       <div>
         <MainNav/>
-        <AlertModel show_alert={this.state.show_alert}/>
-        <Button outline color="primary" onClick={this.buttonClicked.bind(this)}>Open Alert</Button>
+
+        <Cards
+             number={this.state.number}
+             name={this.state.name}
+             expiry={this.state.expiry}
+             cvc={this.state.cvc}
+             focused={this.state.focused}
+           />
+
+
       </div>
     );
   }

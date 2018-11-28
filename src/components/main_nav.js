@@ -26,17 +26,6 @@ class MainNav extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchHomeValues();
-  }
-
-  renderNavBar() {
-    return _.map(this.props.mainNav.home.response, data => {
-      return (
-        <div key={data.id}>{data.value}</div>
-      )
-    });
-  }
 
   toggle() {
     this.setState({
@@ -47,7 +36,6 @@ class MainNav extends Component {
   render() {
     return (
       <div>
-        {/* {this.renderNavBar()}*/}
         <Navbar color="light" light expand="md">
 
          <NavbarBrand  tag={Link} to="/">reactstrap</NavbarBrand>
@@ -59,34 +47,10 @@ class MainNav extends Component {
            <Nav className="ml-auto" navbar>
 
              <NavItem>
-               <NavLink tag={Link} to="/about">About</NavLink>
-             </NavItem>
-
-             <NavItem>
               <NavLink tag={Link} to="/contact">Contact</NavLink>
              </NavItem>
 
-             <NavItem>
-               <NavLink href="https://github.com/reactstrap/reactstrap">Reactstrap</NavLink>
-             </NavItem>
 
-             <UncontrolledDropdown nav inNavbar>
-               <DropdownToggle nav caret>
-                 Options
-               </DropdownToggle>
-               <DropdownMenu right>
-                 <DropdownItem>
-                   Sign In
-                 </DropdownItem>
-                 <DropdownItem>
-                   Logout
-                 </DropdownItem>
-                 <DropdownItem divider />
-                 <DropdownItem>
-                   Reset
-                 </DropdownItem>
-               </DropdownMenu>
-             </UncontrolledDropdown>
            </Nav>
          </Collapse>
        </Navbar>
@@ -100,4 +64,4 @@ function mapStateToProps(state) {
   return {mainNav: state};
 }
 
-export default connect(mapStateToProps, {fetchHomeValues})(MainNav);
+export default connect(mapStateToProps, {})(MainNav);
