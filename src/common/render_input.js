@@ -28,7 +28,7 @@ const TextFieldInput = (props) => {
       name={props.name}
       id={props.id}
       className={props.className}
-      placeholder={props.placeholder}
+      placeholder={props.label}
       autoComplete={'off'}
       {...props.input}
       />
