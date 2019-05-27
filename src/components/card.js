@@ -4,19 +4,26 @@ import {connect} from 'react-redux';
 import { Button } from 'reactstrap';
 import Cards from 'react-credit-cards';
 
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import {validate} from './form_validation';
 import renderField from '../common/render_input';
 import { Container, Row, Col } from 'reactstrap';
+import { ClipLoader } from 'react-spinners';
 
 class CardComponent extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false
+    }
   }
 
   onCardAdd(val){
-    console.log('onCardAdd::: ',val);
+    this.setState({loading:true});
+    setTimeout( () => {
+      this.setState({loading:false});
+    }, 1000);
   }
 
   render() {
@@ -83,6 +90,14 @@ console.log('card_component.form.cardForm: ',card_component.form.cardForm);
            />
         </Col>
       </Row>
+
+      <ClipLoader
+         sizeUnit={"px"}
+         size={50}
+         color={'#123abc'}
+         loading={this.state.loading}
+       />
+
 </Container>
     );
   }
