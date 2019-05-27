@@ -2,19 +2,12 @@ import React, {Component} from 'react';
 import MainNav from './main_nav';
 import {connect} from 'react-redux';
 import { Button } from 'reactstrap';
-import Cards from 'react-credit-cards';
+import CardComponent from './card';
 
 class Home extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      number:'',
-      name:'',
-      expiry:'',
-      cvc:'',
-      focused:false
-    }
   }
 
 
@@ -22,16 +15,7 @@ class Home extends Component {
     return (
       <div>
         <MainNav/>
-
-        <Cards
-             number={this.state.number}
-             name={this.state.name}
-             expiry={this.state.expiry}
-             cvc={this.state.cvc}
-             focused={this.state.focused}
-           />
-
-
+        <CardComponent/>
       </div>
     );
   }
