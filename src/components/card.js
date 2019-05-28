@@ -45,7 +45,7 @@ componentWillReceiveProps(next,prev){
       <form onSubmit={handleSubmit(this.onCardAdd.bind(this))}>
             <Row>
                <Col xs="10" sm="10">
-                <Field name="card_number" type="text" component={renderField} label="Card number"/>
+                <Field name="card_number" type="number" component={renderField} label="Card number"/>
                </Col>
              </Row>
              <Row>
@@ -55,12 +55,12 @@ componentWillReceiveProps(next,prev){
              </Row>
              <Row>
              <Col xs="10" sm="10">
-              <Field name="expiry" type="text" component={renderField} label="Expiry"/>
+              <Field name="expiry" type="number" component={renderField} label="Expiry"/>
              </Col>
              </Row>
              <Row>
              <Col xs="10" sm="10">
-             <Field name="security_number" type="text" component={renderField} label="CVS"/>
+             <Field name="security_number" type="number" component={renderField} label="CVS"/>
              </Col>
              </Row>
        <div>
