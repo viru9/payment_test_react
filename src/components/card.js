@@ -9,6 +9,7 @@ import {validate} from './form_validation';
 import renderField from '../common/render_input';
 import { Container, Row, Col } from 'reactstrap';
 import { ClipLoader } from 'react-spinners';
+import {addPayment} from '../actions/home';
 
 class CardComponent extends Component {
 
@@ -20,20 +21,23 @@ class CardComponent extends Component {
   }
 
   onCardAdd(val){
+    this.props.addPayment(val);
     this.setState({loading:true});
-    setTimeout( () => {
-      this.setState({loading:false});
-    }, 1000);
   }
 
-  render() {
-    const { handleSubmit, pristine, reset, submitting, card_component } = this.props;
 
-if(card_component.form.cardForm){
-console.log('card_component.form.cardForm: ',card_component.form.cardForm);
+componentWillReceiveProps(next,prev){
+  if(next.card_component.payment){
+    if(next.card_component.payment.status){
+      this.setState({loading:false});
+    }
+  }
 }
 
 
+  render() {
+
+    const { handleSubmit, pristine, reset, submitting, card_component } = this.props;
     return (
       <Container>
       <Row>
@@ -41,7 +45,7 @@ console.log('card_component.form.cardForm: ',card_component.form.cardForm);
       <form onSubmit={handleSubmit(this.onCardAdd.bind(this))}>
             <Row>
                <Col xs="10" sm="10">
-                <Field name="card_number" type="text" component={renderField} label="Card number"/>
+                <Field name="card_number" type="number" component={renderField} label="Card number"/>
                </Col>
              </Row>
              <Row>
@@ -51,12 +55,12 @@ console.log('card_component.form.cardForm: ',card_component.form.cardForm);
              </Row>
              <Row>
              <Col xs="10" sm="10">
-              <Field name="expiry" type="text" component={renderField} label="Expiry"/>
+              <Field name="expiry" type="number" component={renderField} label="Expiry"/>
              </Col>
              </Row>
              <Row>
              <Col xs="10" sm="10">
-             <Field name="security_number" type="text" component={renderField} label="CVS"/>
+             <Field name="security_number" type="number" component={renderField} label="CVS"/>
              </Col>
              </Row>
        <div>
@@ -91,12 +95,14 @@ console.log('card_component.form.cardForm: ',card_component.form.cardForm);
         </Col>
       </Row>
 
-      <ClipLoader
-         sizeUnit={"px"}
-         size={50}
-         color={'#123abc'}
-         loading={this.state.loading}
-       />
+
+{this.state.loading && <div className="loading-div">Payment Processing...<ClipLoader
+   sizeUnit={"px"}
+   size={20}
+   color={'#123abc'}
+   loading={this.state.loading}
+ /></div>}
+
 
 </Container>
     );
@@ -108,4 +114,4 @@ function mapStateToProps(state) {
 }
 
 let cardForm = reduxForm({validate, form: 'cardForm'})(CardComponent);
-export default connect(mapStateToProps, {})(cardForm);
+export default connect(mapStateToProps, {addPayment})(cardForm);
