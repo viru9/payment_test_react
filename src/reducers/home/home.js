@@ -1,10 +1,10 @@
-import {FETCH_HOME_VALUES} from './../../actions/home';
+import {ADD_PAYMENT} from './../../actions/home';
 
 export default function(state = {}, action) {
 
   switch (action.type) {
 
-    case FETCH_HOME_VALUES:
+    case ADD_PAYMENT:
       return action.payload;
 
     default:

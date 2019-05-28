@@ -1,23 +1,21 @@
 import axios from 'axios';
 import {ROOT_BASE_URL} from './../common/common';
+import { Field, reduxForm, reset } from 'redux-form';
 
-export const FETCH_HOME_VALUES = 'fetch_home_values';
-const FETCH_HOME_VALUE = 'api/home_data';
+export const ADD_PAYMENT = 'add_payment';
+const ADD_PAYEMENT_API = 'api/add_payment';
 
-export function fetchHomeValues(callback) {
 
-const request = axios.get(`${ROOT_BASE_URL}${FETCH_HOME_VALUE}`)
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-
-  return ({type: FETCH_HOME_VALUES, payload: request});
+export function addPayment(val){
+  // const request = axios.post(`${ROOT_BASE_URL}${ADD_PAYEMENT_API}`);//consider api call success!
+  const request = {status: true};
+      return (dispatch) => {
+        let data = true;//consider api call success!
+          if (data) {
+            setTimeout( () => {
+            dispatch({type: ADD_PAYMENT, payload: request});
+            dispatch(reset('cardForm'));
+          }, 2000);//api response delay time
+          }
+      };
 }

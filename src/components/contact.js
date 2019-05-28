@@ -9,7 +9,7 @@ const Contact = (props) => {
     <MainNav/>
     <Container>
             <Row>
-              <Col>Contact Us</Col>
+              <Col>Viraj Madhushanka</Col>
             </Row>
           </Container>
     </div>
